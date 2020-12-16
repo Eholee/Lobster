@@ -12,7 +12,13 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [LOBSTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
+
 
     buildTypes {
         release {
@@ -26,8 +32,13 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation project(path: ':lobster-annotation')
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    annotationProcessor project(path :":lobster-compiler")
+    implementation project(path: ':module1')
+    implementation project(path: ':module2')
+
 
 }
