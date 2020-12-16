@@ -12,7 +12,7 @@
 
 ### 三、使用方式
     1.需要在壳子工程和其他module中添加如下依赖：
-    ```java
+    ``` java
     android {
         defaultConfig {
         ...
