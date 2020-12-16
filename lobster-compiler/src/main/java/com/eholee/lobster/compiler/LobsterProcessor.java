@@ -508,7 +508,7 @@ public class LobsterProcessor extends BaseProcessor {
                 .addParameter(context)
                 .returns(void.class)
                 .addStatement("try{"+fileNameByPackageName.name+" =$T.getFileNameByPackageName("+context.name+","+all_package_name.name+")",ClassName.get("com.eholee.lobster.main_app" ,"ClassUtil"))
-                .addStatement("for(String "+appFileName.name+" : "+fileNameByPackageName.name+"){$T.e($S, $S.concat("+appFileName.name+"))" ,ClassName.get("android.util" ,"Log") , "Lobster" , "class name:" )
+                .addStatement("for(String "+appFileName.name+" : "+fileNameByPackageName.name+"){")
                 .addStatement("try{Class<?> clazz = $T.forName("+appFileName.name+")" , Class.class)
                 .addStatement("Object "+clazzObj.name+" = clazz.newInstance()")
                 .addStatement("$T field = clazz.getDeclaredField($S)" , Field.class , "application")
