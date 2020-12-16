@@ -3,4 +3,4 @@ include ':module1'
 include ':lobster-compiler'
 include ':lobster-annotation'
 include ':app'
-rootProject.name = "LobsterApplication"
+rootProject.name = "Lobster"
