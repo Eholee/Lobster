@@ -12,7 +12,28 @@
 
 ### 三、使用方式
 1.需要在壳子工程和其他module中添加如下依赖：
+    ``` gradle
+    android {
+        defaultConfig {
+            ...
+            javaCompileOptions {
+                annotationProcessorOptions {
+                    arguments = [AROUTER_MODULE_NAME: project.getName()]
+                }
+            }
+        }
+    }
 
+    dependencies {
+        // 替换成最新版本, 需要注意的是api
+        // 要与compiler匹配使用，均使用最新版可以保证兼容
+        compile 'com.alibaba:arouter-api:x.x.x'
+        annotationProcessor 'com.alibaba:arouter-compiler:x.x.x'
+        ...
+    }
+    // 旧版本gradle插件(< 2.2)，可以使用apt插件，配置方法见文末'其他#4'
+    // Kotlin配置参考文末'其他#5'
+    ```
     ``` gradle
     android {
         defaultConfig {
