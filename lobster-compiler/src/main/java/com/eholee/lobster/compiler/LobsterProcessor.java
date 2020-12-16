@@ -93,7 +93,6 @@ public class LobsterProcessor extends BaseProcessor {
                 super.visitMethodDef(jcMethodDecl);
                 switch (jcMethodDecl.name.toString()) {
                     case onCreate:
-                        messager.printMessage(Diagnostic.Kind.NOTE, jcMethodDecl.name.toString());
                         invokeLobsterInitialize(jcMethodDecl , onCreate);
                         break;
 
@@ -172,6 +171,9 @@ public class LobsterProcessor extends BaseProcessor {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        messager.printMessage(Diagnostic.Kind.NOTE , "Lobster add successfully!");
+
     }
 
     /**
@@ -665,7 +667,7 @@ public class LobsterProcessor extends BaseProcessor {
 
         jcMethodDecl.body = treeMaker.Block(0 , onCreateBuffer.toList());
 
-        messager.printMessage(Diagnostic.Kind.NOTE , "编译后主工程Application的onCreate代码:"+jcMethodDecl.body);
+        messager.printMessage(Diagnostic.Kind.NOTE , "start add codes of Lobster......");
 
     }
 
