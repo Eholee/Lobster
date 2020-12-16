@@ -30,3 +30,46 @@
         ...
     }
     
+2.在壳子工程和其他Module中的Application中添加注解：
+ShellApp注解作用于壳子工程（主工程）Application，一般来说只有一个，ModuleApp注解作用于组件Application，可以设置优先级，AppInstance注解作用于组件Application的实例。
+    ``` java
+    // 壳子工程的Application
+    @ShellApp
+    public class MyApplication extends Application {
+
+        @Override
+        public void onCreate() {
+            super.onCreate();
+        }
+    }
+    // 其他Module的Application
+    @ModuleApp(priority = 1)
+    public class Module1App extends Application {
+        private static final String TAG = "Lobster";
+
+        @AppInstance
+        public static Application mApplication1;
+
+        @Override
+        public void onCreate() {
+            super.onCreate();
+            Log.i(TAG , "Module1App->onCreate");
+        }
+    }
+    // 其他Module的Application
+    @ModuleApp(priority = 2)
+    public class Module2App extends Application {
+        private static final String TAG = "Lobster";
+        @AppInstance
+        public static Application mApplication2;
+
+        @Override
+        public void onCreate() {
+            super.onCreate();
+            Log.i(TAG , "Module2App->onCreate");
+            Toast.makeText(mApplication2, "I come from Module2App", Toast.LENGTH_SHORT).show();
+        }
+    }
+    ```
+
+3.没有了，可以开始耍了！
