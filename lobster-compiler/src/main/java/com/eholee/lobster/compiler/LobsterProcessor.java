@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Enumeration;
 import java.util.Set;
@@ -348,14 +349,14 @@ public class LobsterProcessor extends BaseProcessor {
                 )
                 .addStatement("parserCtl.await();")
                 .beginControlFlow("try")
-                .addStatement("classNames.sort(new $T<String>() { public int compare(String o1, String o2) {" +
+                .addStatement("$T.sort(classNames,new $T<String>() { public int compare(String o1, String o2) {" +
                         " int priority1 = $T.parseInt(o1.substring(o1.lastIndexOf(\"_\")+1));" +
                         " int priority2 = $T.parseInt(o2.substring(o2.lastIndexOf(\"_\")+1));" +
                         "if (priority1<priority2){\n" +
                         "                    return 1;" +
                         " }else if (priority1>priority2){\n" +
                         "                    return -1;\n" +
-                        "                } return 0;}})" , Comparator.class , Integer.class , Integer.class)
+                        "                } return 0;}})" , Collections.class , Comparator.class , Integer.class , Integer.class)
                 .endControlFlow()
                 .beginControlFlow("catch($T ignore)" , Exception.class)
                 .endControlFlow()
